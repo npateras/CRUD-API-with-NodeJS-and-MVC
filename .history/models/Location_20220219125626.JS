@@ -31,4 +31,4 @@ const validateLocation = (Location) => {
 }
 
 module.exports.Location = Location;
-module.exports.validate = validateLocation;
+module.exports.validate = validateLocation();

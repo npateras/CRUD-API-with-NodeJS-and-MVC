@@ -8,7 +8,6 @@ const winston = require('winston');
 const err = require('./middleware/errors');
 const session = require('express-session');
 const passport = require("passport");
-const locationRoutes = require('./routes/location-routes');
 const app = express();
 
 require('./startup/db')();

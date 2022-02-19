@@ -27,8 +27,7 @@ const validateLocation = (Location) => {
     name: Joi.string().min(5).max(256).required(),
     country: Joi.string().min(5).max(256).required(),
   }
-  return Joi.validate(Location, schema);
+  return Joi.validate(Location)
 }
 
-module.exports.Location = Location;
-module.exports.validate = validateLocation;
+module.exports = Location;

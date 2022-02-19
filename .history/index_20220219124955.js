@@ -4,12 +4,11 @@ const path = require("path");
 const config = require('./startup/config');
 const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
+const app = express();
 const winston = require('winston');
 const err = require('./middleware/errors');
 const session = require('express-session');
 const passport = require("passport");
-const locationRoutes = require('./routes/location-routes');
-const app = express();
 
 require('./startup/db')();
 require('./startup/logging')();

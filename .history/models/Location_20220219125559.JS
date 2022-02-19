@@ -30,5 +30,4 @@ const validateLocation = (Location) => {
   return Joi.validate(Location, schema);
 }
 
-module.exports.Location = Location;
-module.exports.validate = validateLocation;
+module.exports = Location;
