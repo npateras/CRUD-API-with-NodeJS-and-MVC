@@ -1,4 +1,4 @@
-const express = require("express")
+onst express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
@@ -8,7 +8,7 @@ const passport = require("passport");
 const { loginCheck } = require("./auth/passport");
 loginCheck(passport);
 
-// Mongo DB connection
+// Mongo DB conncetion
 const database = process.env.MONGOLAB_URI;
 mongoose
   .connect(database, { useUnifiedTopology: true, useNewUrlParser: true })
