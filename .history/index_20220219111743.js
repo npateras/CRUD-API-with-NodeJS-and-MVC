@@ -15,7 +15,7 @@ require('./startup/validations')();
 const { loginCheck } = require("./auth/passport");
 loginCheck(passport);
 
-app.use(expressLayouts);
+app.use(expressLayoutes);
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({extended: true}));
@@ -26,10 +26,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(customerRoutes.routes);
 app.use(err);
 
+
+app.listen(config.port, () => winston.info('App is listening on url http://localhost:' + config.port));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
 //Routes
 app.use("/", require("./routes/login"));
 
-app.listen(config.port, () => winston.info('App is listening on url ' + config.url + ':' + config.port));
+const PORT = process.env.PORT || 4111;
+
+app.listen(PORT, console.log("Server has started at port " + PORT));

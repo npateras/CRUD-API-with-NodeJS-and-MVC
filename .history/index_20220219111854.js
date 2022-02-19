@@ -26,10 +26,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(customerRoutes.routes);
 app.use(err);
 
-app.use(passport.initialize());
-app.use(passport.session());
 
-//Routes
-app.use("/", require("./routes/login"));
-
-app.listen(config.port, () => winston.info('App is listening on url ' + config.url + ':' + config.port));
+app.listen(config.port, () => winston.info('App is listening on url http://localhost:' + config.port));

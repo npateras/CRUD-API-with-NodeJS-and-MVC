@@ -32,4 +32,6 @@ app.use(passport.session());
 //Routes
 app.use("/", require("./routes/login"));
 
-app.listen(config.port, () => winston.info('App is listening on url ' + config.url + ':' + config.port));
+const PORT = process.env.PORT || 4111;
+
+app.listen(config.port, () => winston.info('App is listening on url http://localhost:' + config.port));

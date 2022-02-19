@@ -3,7 +3,7 @@ const winston = require('winston');
 
 // MongoDB connections
 module.exports = () => {
-    mongoose.connect(process.env.MONGODB_URI, {
+    mongoose.connect(MONGODB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: true,

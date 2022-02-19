@@ -23,7 +23,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(customerRoutes.routes);
+/* app.use(customerRoutes.routes); */
 app.use(err);
 
 app.use(passport.initialize());
