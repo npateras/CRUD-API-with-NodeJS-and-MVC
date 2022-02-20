@@ -7,6 +7,7 @@ module.exports = () => {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: true,
-        useCreateIndex: true
+        useCreateIndex: true,
+        serverApi: ServerApiVersion.v1
     }).then(() => winston.info('MongoDB connected successfully!'))
 }

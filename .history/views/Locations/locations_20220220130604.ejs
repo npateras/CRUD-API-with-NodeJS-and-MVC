@@ -23,11 +23,11 @@
                 <% if(locations.length > 0) { %>
                     <% for(let location of locations) { %>
                     <tr>
-                        <th scope="row"><%= location.name %> <%= location.country %></th>
+                        <th scope="row"><%= location.name %> <%= customer.country %></th>
                         <td><%= location.date_added %></td>
                         <td>
-                            <a href="/updateLocations/<%= location._id %>" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href="/deleteLocations/<%= location._id %>" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                            <a href="/updateLocations/<%= location._id %>" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+                            <a href="/deleteLocations/<%= location._id %>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     <% } %>
