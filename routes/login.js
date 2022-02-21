@@ -6,15 +6,15 @@ const {
   registerUser,
   loginUser,
 } = require("../controllers/loginController");
-const { dashboardView } = require("../controllers/dashboardController");
+const { locationView } = require("../controllers/locationController");
 const { protectRoute } = require("../auth/protect");
 
 const router = express.Router();
 
-router.get("/register", registerView);
-router.get("/login", loginView);
+router.get("/views/Account/register.ejs", registerView);
+router.get("/views/Account/login.ejs", loginView);
 //Dashboard
-router.get("/dashboard", protectRoute, dashboardView);
+router.get("/views/Locations/locations.ejs", protectRoute, locationView);
 
 router.post("/register", registerUser);
 router.post("/login", loginUser);

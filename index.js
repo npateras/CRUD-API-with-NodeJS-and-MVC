@@ -11,9 +11,9 @@ const passport = require("passport");
 const locationRoutes = require('./routes/location-routes');
 const app = express();
 
-require('./startup/db')();
-require('./startup/logging')();
-require('./startup/validations')();
+require('./startup/db');
+require('./startup/logging');
+require('./startup/validations');
 
 const { loginCheck } = require("./auth/passport");
 loginCheck(passport);
@@ -26,7 +26,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(customerRoutes.routes);
+app.use(locationRoutes.routes);
 app.use(err);
 
 app.use(passport.initialize());
