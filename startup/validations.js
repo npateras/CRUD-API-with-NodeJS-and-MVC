@@ -1,5 +1,5 @@
-const Join = require('joi');
+const Joi = require('joi');
 
 module.exports = () => {
-    Join.objectId = require('joi-objectid')(Joi);
+    Joi.objectId = require('joi-objectid')(Joi);
 }

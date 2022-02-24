@@ -23,11 +23,11 @@ const LocationSchema = new mongoose.Schema({
 const Location = mongoose.model("Location", LocationSchema);
 
 const validateLocation = (Location) => {
-  const schema =  {
+  const schema = Joi.object({
     name: Joi.string().min(5).max(256).required(),
     country: Joi.string().min(5).max(256).required(),
-  }
-  return Joi.validate(Location, schema);
+  });
+  return schema.validate(Location);
 }
 
 module.exports.Location = Location;

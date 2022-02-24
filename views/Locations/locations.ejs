@@ -5,7 +5,7 @@
                 <h4 class="font-weight-bold">All Locations</h4>
             </div>
             <div class="col-4">
-                <a href="/Locations/addLocation" class="btn btn-success float-right"><i class="fa-solid fa-plus"></i> Add New</a>
+                <a href="./addLocation" class="btn btn-success float-right" style="float: right;"><i class="fa-solid fa-plus"></i> Add New</a>
             </div>
         </div>
     </div>
@@ -23,17 +23,20 @@
                 <% if(locations.length > 0) { %>
                     <% for(let location of locations) { %>
                     <tr>
-                        <th scope="row"><%= location.name %> <%= location.country %></th>
+                        <td><%= location.name %></td>
+                        <td><%= location.country %></td>
                         <td><%= location.date_added %></td>
                         <td>
-                            <a href="/updateLocations/<%= location._id %>" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href="/deleteLocations/<%= location._id %>" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                            <a href="./updateLocation/<%= location._id %>" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="./deleteLocation/<%= location._id %>" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash-can"></i></a>
                         </td>
                     </tr>
                     <% } %>
                 <% } else { %>
                     <tr>
-                        <td>No data found</td>
+                        <td>No locations found</td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 <% } %>
             </tbody>
