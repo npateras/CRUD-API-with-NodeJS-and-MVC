@@ -1,6 +1,7 @@
 const passport = require("passport");
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
+const authMethods = require("../middleware/auth-validations");
 
 // For Register Page
 const registerView = (req, res) => {
@@ -15,6 +16,8 @@ const registerUser = (req, res) => {
   if (!first_name || !last_name || !email || !password || !confirm) {
     console.log("Fill the empty fields");
   }
+
+  authMethods.isInUse(req, res);
 
   // Confirm Passwords
 

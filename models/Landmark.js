@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Joi = require("Joi");
 
-const LocationSchema = new mongoose.Schema({
+const LandmarkSchema = new mongoose.Schema({
   name: {
     type: String,
     minlength: 5,
@@ -20,15 +20,15 @@ const LocationSchema = new mongoose.Schema({
   },
 });
 
-const Location = mongoose.model("Location", LocationSchema);
+const Landmark = mongoose.model("Landmark", LandmarkSchema);
 
-const validateLocation = (Location) => {
+const validateLandmark = (Landmark) => {
   const schema = Joi.object({
     name: Joi.string().min(5).max(256).required(),
     country: Joi.string().min(5).max(256).required(),
   });
-  return schema.validate(Location);
+  return schema.validate(Landmark);
 }
 
-module.exports.Location = Location;
-module.exports.validate = validateLocation;
+module.exports.Landmark = Landmark;
+module.exports.validate = validateLandmark;

@@ -15,7 +15,7 @@ loginCheck(passport);
 
 const app = express();
 
-const locationRoutes = require('./routes/location-routes');
+const landmarkRoutes = require('./routes/landmark-routes');
 const loginRoutes = require('./routes/login-routes');
 const userRoutes = require('./routes/user-routes');
 
@@ -48,7 +48,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
-app.use(locationRoutes.routes);
+app.use(landmarkRoutes.routes);
 app.use(loginRoutes.routes);
 app.use(userRoutes.routes);
 app.use(err);

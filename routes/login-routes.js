@@ -6,7 +6,7 @@ const {
   loginUser,
 } = require("../controllers/loginController");
 
-const { locationsView } = require("../controllers/locationController");
+const { locationsView } = require("../controllers/landmarkController");
 const { protectRoute } = require("../auth/protect");
 
 const router = express.Router();
