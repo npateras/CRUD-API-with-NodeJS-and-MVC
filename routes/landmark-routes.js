@@ -1,27 +1,23 @@
 const express = require('express');
 const {
     getAllLandmarks,
-    getAllLandmarksJson,
-    getAddLandmarkView,
+    getLandmarkById,
+    getLandmarkByName,
     addLandmark,
-    getUpdateLandmarkView,
-    updateLandmark,
-    getDeleteLandmarkView,
+    updateLandmarkById,
+    updateLandmarkByName,
     deleteLandmark
 } = require('../controllers/landmarkController.js');
 
 const router = express.Router();
 
-router.get('/', getAllLandmarks);
 router.get('/landmarks', getAllLandmarks);
-router.get('/landmarksJson', getAllLandmarksJson);
-router.get('/addLandmark', getAddLandmarkView);
-router.post('/addLandmark', addLandmark);
-router.get('/updateLandmark/:id', getUpdateLandmarkView);
-router.post('/updateLandmark/:id', updateLandmark);
-router.get('/deleteLandmark/:id', getDeleteLandmarkView);
-router.post('/deleteLandmark/:id', deleteLandmark);
-
+router.post('/landmarks/addLandmark', addLandmark);
+router.post('/landmarks/updateLandmarkById/:id', updateLandmarkById);
+router.post('/landmarks/updateLandmarkByName/:id', updateLandmarkByName);
+router.post('/landmarks/deleteLandmark/:id', deleteLandmark);
+router.get('/landmarks/getLandmarkById/:id', getLandmarkById);
+router.get('/landmarks/getLandmarkByName/:name', getLandmarkByName);
 
 module.exports = {
     routes: router
