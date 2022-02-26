@@ -18,28 +18,19 @@ const addUser = async (req, res, next) => {
 
     const data = req.body;
 
-    // Password Hashing for the new user
-    bcrypt.genSalt(10, (err, salt) =>
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if (err) throw err;
-
-            data.password = hash;
-        })
-    );
-
-    let User = await new User({
+    let user = await new User({
         first_name: data.first_name,
         last_name: data.last_name,
         email: data.email,
         password: data.password
     });
-    User = await User.save();
+    user = await user.save();
 
     return res.status(200).json({
         status:"success",
         message: "User added successfully!",
         data: {
-            User
+            user
         }
     });
 }
@@ -51,61 +42,43 @@ const updateUserById = async (req, res, next) => {
     const id = req.params.id;
     const data = req.body;
 
-    // Password Hashing for the new password
-    bcrypt.genSalt(10, (err, salt) =>
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if (err) throw err;
-
-            data.password = hash;
-        })
-    );
-
-    let User = await User.findByIdAndUpdate(id, {
+    let user = await User.findByIdAndUpdate(id, {
         first_name: data.first_name,
         last_name: data.last_name,
         password: data.password
     }, {new: true});
 
-    if (!User) return res.status(404).send('User with the given ID not found');
+    if (!user) return res.status(404).send('User with the given ID not found');
     else
     return res.status(200).json({
         status:"success",
         message: "User with the given ID was updated successfully!",
         data: {
-            User
+            data
         }
     });
 }
 
-const updateUserByEmail = async (req, res, next) => {
+const updateUserByEmail = async(req, res, next) => {
     const {error} = validate(req.body);
     if (error) return res.status(422).send(error.details[0].message);
 
     const email = req.params.email;
     const data = req.body;
 
-    // Password Hashing for the new password
-    bcrypt.genSalt(10, (err, salt) =>
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if (err) throw err;
-
-            data.password = hash;
-        })
-    );
-
-    let User = await User.update({email: email}, {
+    let user = await User.updateOne({email: email}, {
         first_name: data.first_name,
-        last_name: data.first_name,
+        last_name: data.last_name,
         password: data.password
     }, {new: true});
 
-    if (!User) return res.status(404).send("User with the email " + email + " not found");
+    if (!user) return res.status(404).send("User with the email " + email + " not found");
     else
     return res.status(200).json({
         status:"success",
         message: "User with the email " + email + " was updated successfully!",
         data: {
-            User
+            data
         }
     });
 }
@@ -113,8 +86,8 @@ const updateUserByEmail = async (req, res, next) => {
 const deleteUser = async (req, res, next) => {
     try {
         const id = req.params.id;
-        const User = await User.findByIdAndRemove(id);
-        if (!User) return res.status(404).send('User with the given ID not found');
+        const user = await User.findByIdAndRemove(id);
+        if (!user) return res.status(404).send('User with the given ID not found');
         else
             return res.status(200).json({
                 status:"success",

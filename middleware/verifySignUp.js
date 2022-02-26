@@ -1,4 +1,4 @@
-const User = require("../models/User");
+var User = require("../models/User");
 
 checkDuplicateEmail = (req, res, next) => {
     // Email
@@ -11,7 +11,13 @@ checkDuplicateEmail = (req, res, next) => {
       }
 
       if (user) {
-        res.status(400).send({ message: "Failed! Email is already in use!" });
+        res.status(400).json({
+          status:"fail",
+          message: "Email is already in use!",
+          data: {
+              user
+          }
+        });
         return false;
       }
 

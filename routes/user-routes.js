@@ -9,13 +9,14 @@ const {
     getUserNameByEmail,
     deleteUser
 } = require('../controllers/userController.js');
+const verifySignUp = require('../middleware/verifySignUp.js');
 
 const router = express.Router();
 
 router.get('/users', getAllUsers);
-router.post('/users/addUser', addUser);
+router.post('/users/addUser', [verifySignUp.checkDuplicateEmail], addUser);
 router.patch('/users/updateUserById/:id', updateUserById);
-router.delete('/users/updateUserByEmail/:email', updateUserByEmail);
+router.patch('/users/updateUserByEmail/:email', updateUserByEmail);
 router.delete('/users/deleteUser/:id', deleteUser);
 router.get('/users/getUserById/:id', getUserById);
 router.get('/users/getUserByEmail/:email', getUserByEmail);

@@ -38,6 +38,7 @@ const updateLandmarkById = async(req, res, next) => {
 
     const id = req.params.id;
     const data = req.body;
+
     let landmark = await Landmark.findByIdAndUpdate(id, {
         name: data.name,
         country: data.country
@@ -49,7 +50,7 @@ const updateLandmarkById = async(req, res, next) => {
         status:"success",
         message: "Landmark with ID " + id + " was updated successfully!",
         data: {
-            landmark
+            data
         }
     });
 }
@@ -71,7 +72,7 @@ const updateLandmarkByName = async(req, res, next) => {
         status:"success",
         message: "Landmark with the name " + name + " was updated successfully!",
         data: {
-            landmark
+            data
         }
     });
 }
@@ -79,8 +80,8 @@ const updateLandmarkByName = async(req, res, next) => {
 const deleteLandmark = async (req, res, next) => {
     try {
         const id = req.params.id;
-        const Landmark = await Landmark.findByIdAndRemove(id);
-        if (!Landmark) return res.status(404).send('Landmark with the given ID not found');
+        const landmark = await Landmark.findByIdAndRemove(id);
+        if (!landmark) return res.status(404).send('Landmark with the given ID not found');
         else
             return res.status(200).json({
                 status:"success",
@@ -117,6 +118,7 @@ const getLandmarkById = async (req, res, next)=>{
 
 const getLandmarkByName = async (req, res, next) => {
     const name = req.params.name;
+
     // If we have multiple landmarks with the same name.
     // const landmark = await Landmark.find({name: name});
     const landmark = await Landmark.findOne({name: name});
