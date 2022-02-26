@@ -13,9 +13,9 @@ const router = express.Router();
 
 router.get('/landmarks', getAllLandmarks);
 router.post('/landmarks/addLandmark', addLandmark);
-router.post('/landmarks/updateLandmarkById/:id', updateLandmarkById);
-router.post('/landmarks/updateLandmarkByName/:id', updateLandmarkByName);
-router.post('/landmarks/deleteLandmark/:id', deleteLandmark);
+router.patch('/landmarks/updateLandmarkById/:id', updateLandmarkById);
+router.patch('/landmarks/updateLandmarkByName/:name', updateLandmarkByName);
+router.delete('/landmarks/deleteLandmark/:id', deleteLandmark);
 router.get('/landmarks/getLandmarkById/:id', getLandmarkById);
 router.get('/landmarks/getLandmarkByName/:name', getLandmarkByName);
 

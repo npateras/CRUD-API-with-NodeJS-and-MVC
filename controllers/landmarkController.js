@@ -16,17 +16,18 @@ const addLandmark = async (req, res, next) => {
     const {error} = validate(req.body);
     if(error) return res.status(422).send(error.details[0].message);
     const data = req.body;
-    let Landmark = await new Landmark({
+
+    let landmark = await new Landmark({
         name: data.name,
         country: data.country
     });
-    Landmark = await Landmark.save();
+    landmark = await landmark.save();
 
     return res.status(200).json({
         status:"success",
         message: "Landmark added successfully!",
         data: {
-            Landmark
+            landmark
         }
     });
 }
@@ -37,18 +38,18 @@ const updateLandmarkById = async(req, res, next) => {
 
     const id = req.params.id;
     const data = req.body;
-    let Landmark = await Landmark.findByIdAndUpdate(id, {
+    let landmark = await Landmark.findByIdAndUpdate(id, {
         name: data.name,
         country: data.country
     }, {new: true});
 
-    if(!Landmark) return res.status(404).send('Landmark with the given ID not found');
+    if (!landmark) return res.status(404).send('Landmark with the given ID not found');
     else
     return res.status(200).json({
         status:"success",
         message: "Landmark with ID " + id + " was updated successfully!",
         data: {
-            Landmark
+            landmark
         }
     });
 }
@@ -59,18 +60,18 @@ const updateLandmarkByName = async(req, res, next) => {
 
     const name = req.params.name;
     const data = req.body;
-    let Landmark = await Landmark.update({name: name}, {
+    let landmark = await Landmark.updateOne({name: name}, {
         name: data.name,
         country: data.country
     }, {new: true});
 
-    if (!Landmark) return res.status(404).send("Landmark with the name " + name + " not found");
+    if (!landmark) return res.status(404).send("Landmark with the name " + name + " not found");
     else
     return res.status(200).json({
         status:"success",
         message: "Landmark with the name " + name + " was updated successfully!",
         data: {
-            Landmark
+            landmark
         }
     });
 }
